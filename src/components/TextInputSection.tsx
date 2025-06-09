@@ -115,14 +115,14 @@ const TextInputSection = ({ onResult }: TextInputSectionProps) => {
   const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
 
   return (
-    <Card className="p-8 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 transform hover:-translate-y-2 rounded-2xl">
-      <div className="space-y-6">
-        <div className="space-y-3">
-          <Label htmlFor="text-input" className="text-lg font-semibold text-white drop-shadow-md flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-yellow-400 animate-pulse" />
+    <Card className="p-4 md:p-8 bg-white/80 backdrop-blur-md border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 rounded-xl">
+      <div className="space-y-4 md:space-y-6">
+        <div className="space-y-2 md:space-y-3">
+          <Label htmlFor="text-input" className="text-base md:text-lg font-semibold text-slate-700 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-500 animate-pulse" />
             Enter Text for Analysis
           </Label>
-          <p className="text-white/80 leading-relaxed">
+          <p className="text-sm md:text-base text-slate-600 leading-relaxed">
             Paste customer reviews, social media posts, or upload files (CSV, JSON, PDF, TXT) to analyze emotional tone
           </p>
         </div>
@@ -133,13 +133,13 @@ const TextInputSection = ({ onResult }: TextInputSectionProps) => {
             placeholder="Enter your text here for sentiment analysis..."
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="min-h-[240px] resize-none bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/60 focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-300 group-hover:border-white/40 rounded-xl"
+            className="min-h-[200px] md:min-h-[240px] resize-none bg-slate-50/50 backdrop-blur-sm border-slate-200 text-slate-700 placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 transition-all duration-300 group-hover:border-slate-300 rounded-xl text-sm md:text-base"
           />
           {(isAnalyzing || isProcessingFile) && (
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center">
-              <div className="flex items-center gap-3 text-white">
-                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span className="font-medium">
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-md rounded-xl flex items-center justify-center">
+              <div className="flex items-center gap-3 text-slate-600">
+                <div className="w-5 h-5 md:w-6 md:h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                <span className="font-medium text-sm md:text-base">
                   {isProcessingFile ? "Processing file..." : "Analyzing sentiment..."}
                 </span>
               </div>
@@ -147,7 +147,7 @@ const TextInputSection = ({ onResult }: TextInputSectionProps) => {
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
           <div className="flex-1">
             <Input
               id="file-upload"
@@ -159,20 +159,20 @@ const TextInputSection = ({ onResult }: TextInputSectionProps) => {
             <Button
               variant="outline"
               onClick={() => document.getElementById('file-upload')?.click()}
-              className="w-full h-12 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:border-purple-300 transition-all duration-300 group rounded-xl"
+              className="w-full h-10 md:h-12 bg-slate-50/50 backdrop-blur-sm border-slate-200 text-slate-600 hover:bg-slate-100/80 hover:border-blue-300 transition-all duration-300 group rounded-xl text-sm md:text-base"
               disabled={isAnalyzing || isProcessingFile}
             >
               <div className="flex items-center gap-2">
                 {isProcessingFile ? (
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-slate-600 border-t-transparent rounded-full animate-spin" />
                 ) : (
-                  <Upload className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                  <Upload className="w-3 h-3 md:w-4 md:h-4 transition-transform duration-300 group-hover:scale-110" />
                 )}
                 <span>Upload File</span>
                 <div className="flex gap-1 text-xs">
-                  <FileText className="w-3 h-3" />
-                  <FileJson className="w-3 h-3" />
-                  <File className="w-3 h-3" />
+                  <FileText className="w-2 h-2 md:w-3 md:h-3" />
+                  <FileJson className="w-2 h-2 md:w-3 md:h-3" />
+                  <File className="w-2 h-2 md:w-3 md:h-3" />
                 </div>
               </div>
             </Button>
@@ -181,47 +181,49 @@ const TextInputSection = ({ onResult }: TextInputSectionProps) => {
           <Button 
             onClick={handleAnalyze} 
             disabled={isAnalyzing || isProcessingFile || !text.trim()}
-            className="h-12 px-8 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 disabled:transform-none rounded-xl text-white border-0"
+            className="h-10 md:h-12 px-6 md:px-8 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 disabled:transform-none rounded-xl text-white border-0 text-sm md:text-base"
           >
             {isAnalyzing ? (
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Analyzing...
+                <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span className="hidden sm:inline">Analyzing...</span>
+                <span className="sm:hidden">...</span>
               </div>
             ) : (
               <>
-                <Sparkles className="w-4 h-4 mr-2" />
-                Analyze Sentiment
+                <Sparkles className="w-3 h-3 md:w-4 md:h-4 mr-2" />
+                <span className="hidden sm:inline">Analyze Sentiment</span>
+                <span className="sm:hidden">Analyze</span>
               </>
             )}
           </Button>
         </div>
 
-        <div className="flex justify-between items-center text-sm bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl border border-white/20">
-          <div className="flex items-center gap-4">
-            <span className="text-white/80">
-              <span className="font-medium text-yellow-400">{text.length}</span> characters
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 text-xs md:text-sm bg-slate-50/50 backdrop-blur-sm px-3 md:px-4 py-2 md:py-3 rounded-xl border border-slate-200">
+          <div className="flex items-center gap-2 md:gap-4">
+            <span className="text-slate-600">
+              <span className="font-medium text-blue-600">{text.length}</span> characters
             </span>
-            <span className="text-white/40">•</span>
-            <span className="text-white/80">
-              <span className="font-medium text-yellow-400">{wordCount}</span> words
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600">
+              <span className="font-medium text-blue-600">{wordCount}</span> words
             </span>
           </div>
           {text.length > 0 && (
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full animate-pulse ${
                 text.length < 100 ? 'bg-orange-400' : 
-                text.length < 500 ? 'bg-green-400' : 'bg-blue-400'
+                text.length < 500 ? 'bg-emerald-400' : 'bg-blue-400'
               }`} />
-              <span className="text-xs text-white/60">
+              <span className="text-xs text-slate-500">
                 {text.length < 100 ? '📝 Short' : text.length < 500 ? '✅ Good' : '🎯 Detailed'}
               </span>
             </div>
           )}
         </div>
 
-        <div className="text-xs text-white/60 bg-white/5 p-3 rounded-lg">
-          <div className="font-medium mb-1">📁 Supported file formats:</div>
+        <div className="text-xs md:text-sm text-slate-500 bg-slate-50/30 p-3 rounded-lg border border-slate-200">
+          <div className="font-medium mb-1 text-slate-600">📁 Supported file formats:</div>
           <div className="grid grid-cols-2 gap-1">
             <span>• 📄 Text files (.txt)</span>
             <span>• 📊 CSV files (.csv)</span>
