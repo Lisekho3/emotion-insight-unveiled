@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -158,13 +157,13 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-2xl">
+      <Card className="p-6 bg-white/90 backdrop-blur-md border border-slate-200 shadow-lg rounded-2xl">
         <div className="space-y-4">
           <div>
-            <Label htmlFor="batch-input" className="text-base font-semibold text-white drop-shadow-md flex items-center gap-2">
+            <Label htmlFor="batch-input" className="text-base font-semibold text-slate-700 flex items-center gap-2">
               ⚡ Batch Text Analysis
             </Label>
-            <p className="text-sm text-white/80 mb-3">
+            <p className="text-sm text-slate-600 mb-3">
               Enter multiple text items (one per line) or upload a file for batch processing
             </p>
           </div>
@@ -175,13 +174,13 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
               placeholder="Enter text items for batch analysis (one per line)&#10;Example:&#10;This product is amazing! 😍&#10;Terrible customer service 😠&#10;Average quality for the price 😐"
               value={batchText}
               onChange={(e) => setBatchText(e.target.value)}
-              className="min-h-[200px] resize-none bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/60 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl"
+              className="min-h-[200px] resize-none bg-slate-50/50 backdrop-blur-sm border-slate-200 text-slate-700 placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl"
               disabled={isProcessing || isProcessingFile}
             />
             {isProcessingFile && (
-              <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center">
-                <div className="flex items-center gap-3 text-white">
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-md rounded-xl flex items-center justify-center">
+                <div className="flex items-center gap-3 text-slate-600">
+                  <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
                   <span className="font-medium">Processing file...</span>
                 </div>
               </div>
@@ -202,11 +201,11 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
                 variant="outline"
                 onClick={() => document.getElementById('batch-file-upload')?.click()}
                 disabled={isProcessing || isProcessingFile}
-                className="w-full bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:border-cyan-300 transition-all duration-300 rounded-xl"
+                className="w-full bg-slate-50/50 backdrop-blur-sm border-slate-200 text-slate-600 hover:bg-slate-100/80 hover:border-blue-300 transition-all duration-300 rounded-xl"
               >
                 <div className="flex items-center gap-2">
                   {isProcessingFile ? (
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-slate-600 border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <Upload className="w-4 h-4" />
                   )}
@@ -224,7 +223,7 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
               variant="outline"
               onClick={clearBatchText}
               disabled={isProcessing || isProcessingFile || !batchText.trim()}
-              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-red-500/20 hover:border-red-300 transition-all duration-300 rounded-xl"
+              className="bg-slate-50/50 backdrop-blur-sm border-slate-200 text-slate-600 hover:bg-red-50/80 hover:border-red-300 transition-all duration-300 rounded-xl"
             >
               <Trash2 className="w-4 h-4 mr-2" />
               Clear
@@ -233,7 +232,7 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
             <Button 
               onClick={handleBatchAnalysis} 
               disabled={isProcessing || isProcessingFile || !batchText.trim()}
-              className="px-8 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 disabled:transform-none rounded-xl text-white border-0"
+              className="px-8 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none rounded-xl text-white border-0"
             >
               {isProcessing ? (
                 <div className="flex items-center gap-2">
@@ -249,16 +248,16 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
             </Button>
           </div>
 
-          <div className="flex justify-between items-center text-sm text-white/70 bg-white/5 p-3 rounded-lg">
-            <span>📊 Items to process: <span className="text-yellow-400 font-medium">{itemCount}</span></span>
+          <div className="flex justify-between items-center text-sm text-slate-600 bg-slate-50/50 p-3 rounded-lg border border-slate-200">
+            <span>📊 Items to process: <span className="text-blue-600 font-medium">{itemCount}</span></span>
             <span>⏱️ Estimated time: ~{Math.ceil(itemCount * 1.5)} seconds</span>
           </div>
 
           {isProcessing && (
-            <div className="space-y-2 bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-              <div className="flex justify-between items-center text-sm text-white">
+            <div className="space-y-2 bg-slate-50/50 backdrop-blur-sm p-4 rounded-xl border border-slate-200">
+              <div className="flex justify-between items-center text-sm text-slate-700">
                 <span>Processing item {currentItem} of {totalItems}</span>
-                <span className="text-yellow-400 font-medium">{progress.toFixed(0)}%</span>
+                <span className="text-blue-600 font-medium">{progress.toFixed(0)}%</span>
               </div>
               <Progress value={progress} className="w-full h-2" />
             </div>
@@ -266,20 +265,20 @@ const BatchProcessor = ({ onResults }: BatchProcessorProps) => {
         </div>
       </Card>
 
-      <Card className="p-6 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-2xl">
-        <h3 className="text-lg font-semibold mb-4 text-white drop-shadow-md">💡 Batch Processing Tips</h3>
+      <Card className="p-6 bg-white/90 backdrop-blur-md border border-slate-200 shadow-lg rounded-2xl">
+        <h3 className="text-lg font-semibold mb-4 text-slate-700">💡 Batch Processing Tips</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div className="bg-white/5 p-4 rounded-lg">
-            <h4 className="font-medium mb-2 text-purple-300">📝 Text Format</h4>
-            <ul className="space-y-1 text-white/70">
+          <div className="bg-slate-50/50 p-4 rounded-lg border border-slate-200">
+            <h4 className="font-medium mb-2 text-blue-600">📝 Text Format</h4>
+            <ul className="space-y-1 text-slate-600">
               <li>• One text item per line</li>
               <li>• Empty lines will be ignored</li>
               <li>• Maximum 1000 characters per item</li>
             </ul>
           </div>
-          <div className="bg-white/5 p-4 rounded-lg">
-            <h4 className="font-medium mb-2 text-blue-300">📁 File Upload</h4>
-            <ul className="space-y-1 text-white/70">
+          <div className="bg-slate-50/50 p-4 rounded-lg border border-slate-200">
+            <h4 className="font-medium mb-2 text-indigo-600">📁 File Upload</h4>
+            <ul className="space-y-1 text-slate-600">
               <li>• Supports .txt, .csv, .json, .pdf files</li>
               <li>• CSV files use first column as text</li>
               <li>• File size limit: 10MB</li>

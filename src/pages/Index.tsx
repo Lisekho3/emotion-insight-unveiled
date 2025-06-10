@@ -56,54 +56,7 @@ const Index = () => {
           </TabsList>
 
           <TabsContent value="analyze" className="space-y-6 md:space-y-8 animate-fade-in">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-              <div className="lg:col-span-2">
-                <TextInputSection onResult={handleNewResult} />
-              </div>
-              {currentAnalysis && (
-                <div className="lg:col-span-1">
-                  <Card className="p-4 md:p-8 bg-white/80 backdrop-blur-md border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 rounded-xl">
-                    <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-6 text-slate-700">✨ Current Analysis</h3>
-                    <div className="space-y-4 md:space-y-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 md:p-4 rounded-xl bg-slate-50/80 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/80 border border-slate-200">
-                        <span className="font-medium text-slate-600 mb-2 sm:mb-0">Sentiment:</span>
-                        <span className={`px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 hover:scale-105 shadow-md ${
-                          currentAnalysis.sentiment === 'positive' ? 'bg-gradient-to-r from-emerald-400 to-green-500 text-white' :
-                          currentAnalysis.sentiment === 'negative' ? 'bg-gradient-to-r from-red-400 to-rose-500 text-white' :
-                          'bg-gradient-to-r from-slate-400 to-gray-500 text-white'
-                        }`}>
-                          {currentAnalysis.sentiment === 'positive' ? '😊 POSITIVE' : 
-                           currentAnalysis.sentiment === 'negative' ? '😔 NEGATIVE' : 
-                           '😐 NEUTRAL'}
-                        </span>
-                      </div>
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 md:p-4 rounded-xl bg-slate-50/80 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/80 border border-slate-200">
-                        <span className="font-medium text-slate-600 mb-2 sm:mb-0">Confidence:</span>
-                        <span className="text-xs md:text-sm font-mono bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-1 rounded-full shadow-md">
-                          {(currentAnalysis.confidence * 100).toFixed(1)}%
-                        </span>
-                      </div>
-                      <div className="space-y-3">
-                        <span className="font-medium text-slate-600">🏷️ Key Words:</span>
-                        <div className="flex flex-wrap gap-2">
-                          {currentAnalysis.keywords.map((keyword, index) => (
-                            <span key={index} className="px-2 md:px-3 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 border border-blue-200 rounded-full text-xs md:text-sm shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md cursor-default">
-                              {keyword}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <span className="font-medium text-slate-600">💡 Explanation:</span>
-                        <p className="text-xs md:text-sm text-slate-600 leading-relaxed p-3 md:p-4 bg-slate-50/80 backdrop-blur-sm rounded-xl border border-slate-200">
-                          {currentAnalysis.explanation}
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-              )}
-            </div>
+            <TextInputSection onResult={handleNewResult} currentAnalysis={currentAnalysis} />
           </TabsContent>
 
           <TabsContent value="batch" className="animate-fade-in">
