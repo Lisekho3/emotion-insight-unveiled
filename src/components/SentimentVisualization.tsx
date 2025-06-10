@@ -195,11 +195,11 @@ const SentimentVisualization = ({ results }: SentimentVisualizationProps) => {
 
       {/* Detailed Results Table - Mobile Optimized */}
       <Card className="p-4 md:p-8 bg-white/80 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-500 rounded-xl">
-        <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-6 text-slate-700">Analysis History</h3>
+        <h3 className="text-lg md:text-xl font-semibold mb-4 md:mb-6 text-slate-700">Analysis History ({results.length} items)</h3>
         <div className="space-y-3 md:space-y-0">
           {/* Mobile View - Card Layout */}
           <div className="block md:hidden space-y-3">
-            {results.slice(0, 5).map((result) => (
+            {results.map((result) => (
               <div key={result.id} className="border border-slate-200 rounded-lg p-3 bg-slate-50/50 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -237,7 +237,7 @@ const SentimentVisualization = ({ results }: SentimentVisualizationProps) => {
                 </tr>
               </thead>
               <tbody>
-                {results.slice(0, 10).map((result) => (
+                {results.map((result) => (
                   <tr key={result.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors duration-200">
                     <td className="p-4 max-w-xs">
                       <div className="truncate text-slate-700">{result.text}</div>
